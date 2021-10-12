@@ -1,14 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Button,
-  Input,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
-  Grid,
-} from "@mui/material";
+import { Button, Input, MenuItem, Select } from "@mui/material";
 import styles from "./Select.module.css";
 import { fetchPhotos } from "../../api/nasa-service";
 import {
@@ -16,15 +8,23 @@ import {
   setRoverAction,
   setSolAction,
 } from "../../redux/reducers/state-reducer";
+import Notiflix, { Notify } from "notiflix";
+
+Notiflix.Notify.init({
+  opacity: 0.8,
+  timeout: 3000,
+  clickToClose: true,
+  fontSize: "18px",
+});
 
 const SelectForm = () => {
   const dispatch = useDispatch();
-  const [error, setError] = useState("");
   const rover = useSelector((state) => state.stateReducer.rover);
   const camera = useSelector((state) => state.stateReducer.camera);
   const sol = useSelector((state) => state.stateReducer.sol);
 
   const onClick = () => {
+    console.log(rover);
     if (
       (rover === "Curiosity" && camera === "pancam") ||
       (rover === "Curiosity" && camera === "minites") ||
@@ -37,23 +37,20 @@ const SelectForm = () => {
       (rover === "Spirit" && camera === "mahli") ||
       (rover === "Spirit" && camera === "mardi")
     ) {
-      setError("we don't have such photos. Try another rover or camera.");
-    } else if (!rover) {
-      setError("Rover is required.");
+      Notify.failure("We don't have such photos. Try another rover or camera.");
+    } else if (rover === "all") {
+      Notify.failure("Rover is required.");
     } else {
       dispatch(fetchPhotos(rover, sol, camera));
     }
   };
   const onRoverChange = (e) => {
-    setError("");
     dispatch(setRoverAction(e.target.value));
   };
   const onCameraChange = (e) => {
-    setError("");
     dispatch(setCameraAction(e.target.value));
   };
   const onSolChange = (e) => {
-    setError("");
     dispatch(setSolAction(e.target.value));
   };
 
@@ -63,7 +60,6 @@ const SelectForm = () => {
       <div className={styles.wrapper}>
         <Select
           className={styles.field}
-          required={true}
           name="choose your rover"
           label="rover"
           value={rover}

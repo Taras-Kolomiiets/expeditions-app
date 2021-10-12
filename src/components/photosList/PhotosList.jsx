@@ -14,11 +14,20 @@ import {
 import { makeStyles } from "@material-ui/styles";
 import { getPhotos } from "../../api/nasa-service";
 import { setLoadMoreAction } from "../../redux/reducers/state-reducer";
-import styles from "./PhotosList.module.css";
+import TransitionsModal from "../Modal/Modal";
+import Notiflix, { Notify, Loading } from "notiflix";
+
+Notiflix.Notify.init({
+  opacity: 0.8,
+  timeout: 3000,
+  clickToClose: true,
+  fontSize: "18px",
+});
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 460,
+    margin: "0 auto",
   },
   wrapper: {
     marginTop: 20,
@@ -39,71 +48,79 @@ const PhotosList = () => {
 
   const onLoadMore = () => {
     getPhotos(rover, sol, camera, page)
-      .then((data) => dispatch(setLoadMoreAction(data.photos)))
+      .then((data) => {
+        if (data.photos.length > 0) {
+          Loading.dots();
+          dispatch(setLoadMoreAction(data.photos));
+          Loading.remove();
+        }
+        Notify.failure("Oops. No photo left.");
+      })
       .then(setPage(page + 1));
   };
 
   const classes = useStyles();
 
   return (
-    <Grid container justify="center" spacing={3} className={classes.wrapper}>
-      {photos.map((item, i) => (
-        <Grid key={i} item xs={12} md={4} sm={6} className={classes.root}>
-          <Card>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={item.img_src}
-                title="Image Mars"
-              />
-              <CardContent>
-                <Typography variant="h5" color="textPrimary">
-                  Rover name:
-                </Typography>
-                <Typography variant="h6" component="h2" color="textSecondary">
-                  {item.rover.name}
-                </Typography>
-                <Divider />
-                <Typography variant="body1" color="textPrimary">
-                  Camera name:
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {item.camera.full_name}
-                </Typography>
-                <Typography variant="body1" color="textPrimary">
-                  Sol:{" "}
+    <div>
+      <Grid container justify="center" spacing={3} className={classes.wrapper}>
+        {photos.map((item, i) => (
+          <Grid key={i} item xs={12} md={4} sm={6} className={classes.root}>
+            <Card>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={item.img_src}
+                  title="Image Mars"
+                />
+                <CardContent>
+                  <Typography variant="h5" color="textPrimary">
+                    Rover name:
+                  </Typography>
+                  <Typography variant="h6" component="h2" color="textSecondary">
+                    {item.rover.name}
+                  </Typography>
+                  <Divider />
+                  <Typography variant="body1" color="textPrimary">
+                    Camera name:
+                  </Typography>
                   <Typography
                     variant="body2"
                     color="textSecondary"
-                    component="span"
+                    component="p"
                   >
-                    {item.sol}
+                    {item.camera.full_name}
                   </Typography>
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button
-                size="small"
-                color="primary"
-                href={item.img_src}
-                target="_blank"
-              >
-                open photo
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
-      <Button
-        style={{ marginLeft: "auto", marginRight: "auto" }}
-        onClick={onLoadMore}
-        variant="contained"
-        color="primary"
-      >
-        Load more...
-      </Button>
-    </Grid>
+                  <Typography variant="body1" color="textPrimary">
+                    Sol:{" "}
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="span"
+                    >
+                      {item.sol}
+                    </Typography>
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <TransitionsModal image={item.img_src} />
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+      {photos.length > 0 && (
+        <Button
+          style={{ margin: "20px auto" }}
+          onClick={onLoadMore}
+          variant="contained"
+          color="primary"
+        >
+          Load more...
+        </Button>
+      )}
+    </div>
   );
 };
 

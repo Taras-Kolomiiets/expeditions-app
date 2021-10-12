@@ -1,8 +1,6 @@
 import axios from "axios";
-import {
-  setPhotosAction,
-  setLoadingAction,
-} from "../redux/reducers/state-reducer";
+import { setPhotosAction } from "../redux/reducers/state-reducer";
+import { Loading } from "notiflix";
 
 const API_KEY = "r2pmpdHRfs3N87ifzV0cLE3j7IX3Oo5SBpJGfYPw";
 
@@ -11,7 +9,7 @@ const instance = axios.create({
 });
 
 export const getPhotos = async (
-  rover = "curiosity",
+  rover = "",
   sol = 1000,
   camera = "all",
   page = 1
@@ -24,8 +22,8 @@ export const getPhotos = async (
 };
 
 export const fetchPhotos = (rover, sol, camera, page) => async (dispatch) => {
-  dispatch(setLoadingAction(true));
+  Loading.dots();
   const photos = await getPhotos(rover, sol, camera, page);
   dispatch(setPhotosAction(photos));
-  dispatch(setLoadingAction(false));
+  Loading.remove();
 };
