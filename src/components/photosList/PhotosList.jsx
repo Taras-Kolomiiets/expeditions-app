@@ -33,7 +33,7 @@ const useStyles = makeStyles({
     marginTop: 20,
   },
   media: {
-    height: 180,
+    height: 240,
   },
 });
 
@@ -63,9 +63,9 @@ const PhotosList = () => {
 
   return (
     <div>
-      <Grid container justify="center" spacing={3} className={classes.wrapper}>
+      <Grid container justify="center" spacing={2} className={classes.wrapper}>
         {photos.map((item, i) => (
-          <Grid key={i} item xs={12} md={4} sm={6} className={classes.root}>
+          <Grid key={i} item xs={8} md={4} sm={8} className={classes.root}>
             <Card>
               <CardActionArea>
                 <CardMedia
@@ -75,21 +75,21 @@ const PhotosList = () => {
                 />
                 <CardContent>
                   <Typography variant="h5" color="textPrimary">
-                    Rover name:
+                    Earth date:
                   </Typography>
                   <Typography variant="h6" component="h2" color="textSecondary">
-                    {item.rover.name}
+                    {item.earth_date}
                   </Typography>
                   <Divider />
                   <Typography variant="body1" color="textPrimary">
-                    Camera name:
+                    Rover name:
                   </Typography>
                   <Typography
                     variant="body2"
                     color="textSecondary"
                     component="p"
                   >
-                    {item.camera.full_name}
+                    {item.rover.name}
                   </Typography>
                   <Typography variant="body1" color="textPrimary">
                     Sol:{" "}

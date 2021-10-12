@@ -9,9 +9,9 @@ const instance = axios.create({
 });
 
 export const getPhotos = async (
-  rover = "",
+  rover = "Curiosity",
   sol = 1000,
-  camera = "all",
+  camera = "fhaz",
   page = 1
 ) => {
   const response = await instance.get(
