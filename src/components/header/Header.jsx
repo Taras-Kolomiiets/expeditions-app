@@ -1,8 +1,17 @@
 import React from "react";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import classes from "./Header.module.css";
 
 const Header = () => {
-  return <h1>Here you can see photos from Mars!</h1>;
+  return (
+    <div className={classes.header}>
+      <ul>
+        <li>
+          Explore Mars!
+          <hr className={classes.hrShelf} />
+        </li>
+      </ul>
+    </div>
+  );
 };
 
 export default Header;

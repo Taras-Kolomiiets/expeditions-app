@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Input, MenuItem, Select } from "@mui/material";
+import {
+  Button,
+  Input,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  Grid,
+} from "@mui/material";
 import styles from "./Select.module.css";
 import { fetchPhotos } from "../../api/nasa-service";
 import {
@@ -31,7 +39,7 @@ const SelectForm = () => {
     ) {
       setError("we don't have such photos. Try another rover or camera.");
     } else if (!rover) {
-      setError("rover is required");
+      setError("Rover is required.");
     } else {
       dispatch(fetchPhotos(rover, sol, camera));
     }
@@ -51,37 +59,54 @@ const SelectForm = () => {
 
   return (
     <>
-      <h2>Choose rover, camera and sol. Rover is required</h2>
-      <Select
-        name="choose your rover"
-        label="rover"
-        onChange={onRoverChange}
-        className={styles.roverField}
-      >
-        <MenuItem value="Curiosity">Curiosity</MenuItem>
-        <MenuItem value="Opportunity">Opportunity</MenuItem>
-        <MenuItem value="Spirit">Spirit</MenuItem>
-      </Select>
-      <Select
-        name="choose your camera"
-        onChange={onCameraChange}
-        className={styles.cameraField}
-      >
-        <MenuItem value="fhaz">fhaz</MenuItem>
-        <MenuItem value="rhaz">rhaz</MenuItem>
-        <MenuItem value="mast">mast</MenuItem>
-        <MenuItem value="chemcam">chemcam</MenuItem>
-        <MenuItem value="mahli">mahli</MenuItem>
-        <MenuItem value="mardi">mardi</MenuItem>
-        <MenuItem value="navcam">navcam</MenuItem>
-        <MenuItem value="pancam">pancam</MenuItem>
-        <MenuItem value="minites">minites</MenuItem>
-      </Select>
-      <Input type="text" placeholder="choose sol" onChange={onSolChange} />
-      {error && <span className={"error"}>{error}</span>}
-      <Button color="primary" onClick={onClick}>
-        Show photos
-      </Button>
+      <h2 className={styles.subTitle}>Choose rover, camera and sol</h2>
+      <div className={styles.wrapper}>
+        <Select
+          className={styles.field}
+          required={true}
+          name="choose your rover"
+          label="rover"
+          value={rover}
+          onChange={onRoverChange}
+        >
+          <MenuItem value="Curiosity">Curiosity</MenuItem>
+          <MenuItem value="Opportunity">Opportunity</MenuItem>
+          <MenuItem value="Spirit">Spirit</MenuItem>
+        </Select>
+        <Select
+          required={true}
+          name="choose your camera"
+          value={camera}
+          onChange={onCameraChange}
+          className={styles.field}
+        >
+          <MenuItem value="fhaz">FHAZ</MenuItem>
+          <MenuItem value="rhaz">RHAZ</MenuItem>
+          <MenuItem value="mast">MAST</MenuItem>
+          <MenuItem value="chemcam">CHEMCAM</MenuItem>
+          <MenuItem value="mahli">MAHLI</MenuItem>
+          <MenuItem value="mardi">MARDI</MenuItem>
+          <MenuItem value="navcam">NAVCAM</MenuItem>
+          <MenuItem value="pancam">PANCAM</MenuItem>
+          <MenuItem value="minites">MINITES</MenuItem>
+        </Select>
+        <Input
+          className={styles.field}
+          required={true}
+          type="number"
+          placeholder="choose sol"
+          onChange={onSolChange}
+        />
+        <Button
+          size="large"
+          type="submit"
+          variant="contained"
+          color="primary"
+          onClick={onClick}
+        >
+          Show photos
+        </Button>
+      </div>
     </>
   );
 };

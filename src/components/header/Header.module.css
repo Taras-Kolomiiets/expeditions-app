@@ -1,0 +1,43 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header ul {
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+.header ul li {
+	list-style: none;
+	color: #fff;
+	font-size: 6em;
+	font-weight: bold;
+	letter-spacing: 10px;
+}
+.header ul:hover li {
+	animation: animate 2s linear forwards;
+}
+
+@keyframes animate {
+	0% {
+		transform: rotate(0deg) translateY(0px);
+		opacity: 1;
+		filter: blur(1px);
+	}
+	100% {
+		transform: rotate(45deg) translateY(-200px);
+		opacity: 0;
+		filter: blur(20px);
+	}
+}
+
+.hrShelf {
+	margin: -30px auto 10px;
+	padding: 0;
+	height: 50px;
+	border: none;
+	border-bottom: 2px solid floralwhite;
+	box-shadow: 0 20px 20px -20px #333;
+	width: 95%;
+}

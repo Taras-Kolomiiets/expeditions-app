@@ -1,4 +1,16 @@
-.roverField, .cameraField{
-    margin: auto 10px;
-    width: 70px;
+.subTitle {
+    text-align: center;
+    color: aliceblue;
+    font-style: italic;
+}
+
+.wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 900px;
+    background-color: aliceblue;
+    border-radius: 1em;
 }
