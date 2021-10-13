@@ -43,7 +43,7 @@ export default function TransitionsModal({ image }) {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                width: "80%",
+                width: "85%",
               }}
               src={image}
               alt=""

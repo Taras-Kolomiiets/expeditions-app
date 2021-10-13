@@ -6,7 +6,7 @@ html {
 body {
   background-image: url('./images/mars.jpg');
   background-size: cover;
-  animation: moveIt 10s linear infinite;
+  animation: moveIt 30s linear infinite;
   animation-direction: alternate;
 }
 @keyframes moveIt {
