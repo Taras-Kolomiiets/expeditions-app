@@ -47,8 +47,8 @@ const SelectForm = () => {
       (rover === "Spirit" && camera === "mardi")
     ) {
       Notify.failure("We don't have such photos. Try another rover or camera.");
-    } else if (rover === "all") {
-      Notify.failure("Rover is required.");
+    } else if (rover === "all" || camera === "") {
+      Notify.failure("Rover and camera are required.");
     } else {
       Loading.dots();
       getPhotos(rover, sol, camera).then((data) => {

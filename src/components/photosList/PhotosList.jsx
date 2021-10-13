@@ -4,7 +4,6 @@ import {
   Button,
   Grid,
   Card,
-  CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
@@ -68,42 +67,36 @@ const PhotosList = () => {
         {photos.map((item, i) => (
           <Grid key={i} item xs={8} md={4} sm={8} className={styles.root}>
             <Card>
-              <CardActionArea>
-                <CardMedia
-                  className={styles.media}
-                  image={item.img_src}
-                  title="Image Mars"
-                />
-                <CardContent>
-                  <Typography variant="h6" color="textPrimary">
-                    Earth date:
-                  </Typography>
-                  <Typography variant="h6" component="h2" color="textSecondary">
-                    {item.earth_date}
-                  </Typography>
-                  <Divider />
-                  <Typography variant="body1" color="textPrimary">
-                    Rover name:
-                  </Typography>
+              <CardMedia
+                className={styles.media}
+                image={item.img_src}
+                title="Image Mars"
+              />
+              <CardContent>
+                <Typography variant="h6" color="textPrimary">
+                  Earth date:
+                </Typography>
+                <Typography variant="h6" component="h2" color="textSecondary">
+                  {item.earth_date}
+                </Typography>
+                <Divider />
+                <Typography variant="body1" color="textPrimary">
+                  Rover name:
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {item.rover.name}
+                </Typography>
+                <Typography variant="body1" color="textPrimary">
+                  Sol:{" "}
                   <Typography
                     variant="body2"
                     color="textSecondary"
-                    component="p"
+                    component="span"
                   >
-                    {item.rover.name}
+                    {item.sol}
                   </Typography>
-                  <Typography variant="body1" color="textPrimary">
-                    Sol:{" "}
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="span"
-                    >
-                      {item.sol}
-                    </Typography>
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
+                </Typography>
+              </CardContent>
               <CardActions>
                 <TransitionsModal image={item.img_src} />
               </CardActions>
