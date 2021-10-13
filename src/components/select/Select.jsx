@@ -9,9 +9,10 @@ import {
   NativeSelect,
 } from "@mui/material";
 import styles from "./Select.module.css";
-import { fetchPhotos } from "../../api/nasa-service";
+import { getPhotos } from "../../api/nasa-service";
 import {
   setCameraAction,
+  setPhotosAction,
   setRoverAction,
   setSolAction,
 } from "../../redux/reducers/state-reducer";
@@ -28,7 +29,6 @@ Notiflix.Notify.init({
 
 const SelectForm = () => {
   const dispatch = useDispatch();
-  const photos = useSelector((state) => state.stateReducer.data.photos);
   const rover = useSelector((state) => state.stateReducer.rover);
   const camera = useSelector((state) => state.stateReducer.camera);
   const sol = useSelector((state) => state.stateReducer.sol);
@@ -51,17 +51,18 @@ const SelectForm = () => {
       Notify.failure("Rover is required.");
     } else {
       Loading.dots();
-      dispatch(fetchPhotos(rover, sol, camera));
-      Loading.remove();
-      setTimeout(() => {
-        if (photos.length === 0) {
+      getPhotos(rover, sol, camera).then((data) => {
+        if (data.photos.length === 0) {
           Notify.failure(
             "We don't have such photos. Try another rover or camera."
           );
         }
-      }, 1000);
+        dispatch(setPhotosAction(data));
+      });
+      Loading.remove();
     }
   };
+
   const onRoverChange = (e) => {
     dispatch(setRoverAction(e.target.value));
   };
@@ -128,7 +129,7 @@ const SelectForm = () => {
           onChange={onSolChange}
         />
         <Button
-          size="large"
+          size="normal"
           type="submit"
           variant="contained"
           color="primary"

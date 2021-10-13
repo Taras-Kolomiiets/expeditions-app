@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+	font-size: 72%;
 }
 .header ul {
 	margin: 0;

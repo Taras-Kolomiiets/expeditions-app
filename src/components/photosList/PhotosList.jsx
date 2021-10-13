@@ -18,6 +18,7 @@ import TransitionsModal from "../Modal/Modal";
 import Notiflix, { Notify, Loading } from "notiflix";
 
 Notiflix.Notify.init({
+  position: "right-bottom",
   opacity: 0.8,
   timeout: 3000,
   clickToClose: true,
