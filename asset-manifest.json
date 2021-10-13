@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/expeditions-app/static/css/main.41479c97.chunk.css",
-    "main.js": "/expeditions-app/static/js/main.75d9bc24.chunk.js",
-    "main.js.map": "/expeditions-app/static/js/main.75d9bc24.chunk.js.map",
+    "main.js": "/expeditions-app/static/js/main.acce8095.chunk.js",
+    "main.js.map": "/expeditions-app/static/js/main.acce8095.chunk.js.map",
     "runtime-main.js": "/expeditions-app/static/js/runtime-main.34540537.js",
     "runtime-main.js.map": "/expeditions-app/static/js/runtime-main.34540537.js.map",
-    "static/js/2.db33ff01.chunk.js": "/expeditions-app/static/js/2.db33ff01.chunk.js",
-    "static/js/2.db33ff01.chunk.js.map": "/expeditions-app/static/js/2.db33ff01.chunk.js.map",
+    "static/js/2.845dae50.chunk.js": "/expeditions-app/static/js/2.845dae50.chunk.js",
+    "static/js/2.845dae50.chunk.js.map": "/expeditions-app/static/js/2.845dae50.chunk.js.map",
     "index.html": "/expeditions-app/index.html",
     "static/css/main.41479c97.chunk.css.map": "/expeditions-app/static/css/main.41479c97.chunk.css.map",
-    "static/js/2.db33ff01.chunk.js.LICENSE.txt": "/expeditions-app/static/js/2.db33ff01.chunk.js.LICENSE.txt",
+    "static/js/2.845dae50.chunk.js.LICENSE.txt": "/expeditions-app/static/js/2.845dae50.chunk.js.LICENSE.txt",
     "static/media/App.css": "/expeditions-app/static/media/mars.b9388b47.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.34540537.js",
-    "static/js/2.db33ff01.chunk.js",
+    "static/js/2.845dae50.chunk.js",
     "static/css/main.41479c97.chunk.css",
-    "static/js/main.75d9bc24.chunk.js"
+    "static/js/main.acce8095.chunk.js"
   ]
 }
