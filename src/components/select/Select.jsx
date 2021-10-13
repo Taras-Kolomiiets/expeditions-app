@@ -33,7 +33,7 @@ const SelectForm = () => {
   const camera = useSelector((state) => state.stateReducer.camera);
   const sol = useSelector((state) => state.stateReducer.sol);
 
-  const onClick = () => {
+  const onButtonClick = () => {
     if (
       (rover === "Curiosity" && camera === "pancam") ||
       (rover === "Curiosity" && camera === "minites") ||
@@ -133,7 +133,7 @@ const SelectForm = () => {
           type="submit"
           variant="contained"
           color="primary"
-          onClick={onClick}
+          onClick={onButtonClick}
         >
           Show photos
         </Button>

@@ -2,15 +2,12 @@ const defaultState = {
   data: {
     photos: [],
   },
-  loading: false,
   rover: "all",
   camera: "curiosity",
   sol: 1000,
-  page: 1,
 };
 
 const SET_PHOTOS = "SET_PHOTOS";
-const SET_LOADING = "SET_LOADING";
 const SET_ROVER = "SET_ROVER";
 const SET_CAMERA = "SET_CAMERA";
 const SET_SOL = "SET_SOL";
@@ -23,12 +20,6 @@ export const stateReducer = (state = defaultState, action) => {
         ...state,
         data: action.payload,
       };
-    case SET_LOADING: {
-      return {
-        ...state,
-        loading: action.payload,
-      };
-    }
     case SET_ROVER:
       return {
         ...state,
@@ -58,10 +49,6 @@ export const stateReducer = (state = defaultState, action) => {
 
 export const setPhotosAction = (payload) => ({
   type: SET_PHOTOS,
-  payload,
-});
-export const setLoadingAction = (payload) => ({
-  type: SET_LOADING,
   payload,
 });
 export const setRoverAction = (payload) => ({

@@ -3,14 +3,14 @@ import classes from "./Header.module.css";
 
 const Header = () => {
   return (
-    <div className={classes.header}>
+    <header className={classes.header}>
       <ul>
         <li>
           Explore Mars!
           <hr className={classes.hrShelf} />
         </li>
       </ul>
-    </div>
+    </header>
   );
 };
 

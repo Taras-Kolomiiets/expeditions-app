@@ -3,7 +3,6 @@ import { setPhotosAction } from "../redux/reducers/state-reducer";
 import { Loading } from "notiflix";
 
 const API_KEY = "r2pmpdHRfs3N87ifzV0cLE3j7IX3Oo5SBpJGfYPw";
-
 const instance = axios.create({
   baseURL: "https://api.nasa.gov/mars-photos/api/v1/rovers/",
 });

@@ -60,22 +60,22 @@ const PhotosList = () => {
       .then(setPage(page + 1));
   };
 
-  const classes = useStyles();
+  const styles = useStyles();
 
   return (
     <div>
-      <Grid container justify="center" spacing={2} className={classes.wrapper}>
+      <Grid container justify="center" spacing={2} className={styles.wrapper}>
         {photos.map((item, i) => (
-          <Grid key={i} item xs={8} md={4} sm={8} className={classes.root}>
+          <Grid key={i} item xs={8} md={4} sm={8} className={styles.root}>
             <Card>
               <CardActionArea>
                 <CardMedia
-                  className={classes.media}
+                  className={styles.media}
                   image={item.img_src}
                   title="Image Mars"
                 />
                 <CardContent>
-                  <Typography variant="h5" color="textPrimary">
+                  <Typography variant="h6" color="textPrimary">
                     Earth date:
                   </Typography>
                   <Typography variant="h6" component="h2" color="textSecondary">
